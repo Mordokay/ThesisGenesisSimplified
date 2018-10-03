@@ -125,10 +125,53 @@ public class ElementController : MonoBehaviour {
             }
 
             List<GameObject> closeByNPCs = new List<GameObject>();
+
+            string tagString = "";
+            foreach (Message.Tag t in tags)
+            {
+                tagString += t.name + " " + t.weight + ",";
+            }
+            if (tags.Count > 0)
+            {
+                tagString = tagString.Substring(0, tagString.Length - 1);
+            }
+
+
             foreach (Transform npc in emc.npcHolder.transform)
             {
-                //check if NPC is at a close distance;
-                if (Vector3.Distance(npc.GetChild(1).position, this.transform.position) < messageSendDistance)
+                bool wantedMessage = npc.gameObject.GetComponent<NPCData>().ReceiveMessage(new Message(eventId, messageTime, description, tagString));
+                if (this.name.Contains("Golden") && wantedMessage && npc.gameObject.GetComponent<NPCData>().NPCType == 1)
+                {
+                    switch (tags[0].name)
+                    {
+                        case "Wood":
+                            npc.gameObject.GetComponent<NPCData>().LeftHand.color = new Color(0.1568f, 0.55686f, 0.0f);
+                            npc.gameObject.GetComponent<NPCData>().RightHand.color = new Color(0.1568f, 0.55686f, 0.0f);
+                            npc.gameObject.GetComponent<NPCData>().Head.color = new Color(0.1568f, 0.55686f, 0.0f);
+                            break;
+                        case "Rock":
+                            npc.gameObject.GetComponent<NPCData>().LeftHand.color = new Color(0.55f, 0.55f, 0.55f);
+                            npc.gameObject.GetComponent<NPCData>().RightHand.color = new Color(0.55f, 0.55f, 0.55f);
+                            npc.gameObject.GetComponent<NPCData>().Head.color = new Color(0.55f, 0.55f, 0.55f);
+                            break;
+                        case "Cactus":
+                            npc.gameObject.GetComponent<NPCData>().LeftHand.color = new Color(0.9725f, 0.949f, 0.1216f);
+                            npc.gameObject.GetComponent<NPCData>().RightHand.color = new Color(0.9725f, 0.949f, 0.1216f);
+                            npc.gameObject.GetComponent<NPCData>().Head.color = new Color(0.9725f, 0.949f, 0.1216f);
+                            break;
+                        case "Berries":
+                            npc.gameObject.GetComponent<NPCData>().LeftHand.color = new Color(0.91f, 0.1725f, 0.1725f);
+                            npc.gameObject.GetComponent<NPCData>().RightHand.color = new Color(0.91f, 0.1725f, 0.1725f);
+                            npc.gameObject.GetComponent<NPCData>().Head.color = new Color(0.91f, 0.1725f, 0.1725f);
+                            break;
+                    }
+                }
+            }
+            /*
+
+                    }
+                    //check if NPC is at a close distance;
+                    if (Vector3.Distance(npc.GetChild(1).position, this.transform.position) < messageSendDistance)
                 {
                     string tagString = "";
                     foreach (Message.Tag t in tags)
@@ -177,9 +220,10 @@ public class ElementController : MonoBehaviour {
                                 npc.gameObject.GetComponent<NPCData>().Head.color = new Color(0.91f, 0.1725f, 0.1725f);
                                 break;
                         }
-                    }
+                    
                 }
                 npc.gameObject.GetComponentInChildren<NPCPatrolMovement>().UpdatePatrolPoints();
+                
             }
 
             //Pick random NPC from the list to go and tell the closest guardian what happened
