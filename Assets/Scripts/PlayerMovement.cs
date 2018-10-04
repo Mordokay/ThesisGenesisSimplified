@@ -125,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
                 this.GetComponent<Rigidbody>().velocity = direction * moveSpeed;
             }
 
-            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(1)) && stamina.value > 0.4f && tc.tutorialStage >= 15)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(1)) && stamina.value > 0.4f && tc.tutorialStage >= 13)
             {
                 this.GetComponent<Rigidbody>().AddForce(this.transform.forward * dashForce);
                 //Debug.Log(this.transform.forward);

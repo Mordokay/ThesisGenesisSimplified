@@ -41,6 +41,13 @@ public class Social : MonoBehaviour {
     {
         WizardController wcA = this.transform.GetChild(1).GetComponent<WizardController>();
         WizardController wcB = otherNPC.transform.GetChild(1).GetComponent<WizardController>();
+
+        //Ignore communication with wizards
+        if (wcA != null || wcB != null)
+        {
+            return;
+        }
+
         NPCPatrolMovement movA = this.transform.GetChild(1).GetComponent<NPCPatrolMovement>();
         NPCPatrolMovement movB = otherNPC.transform.GetChild(1).GetComponent<NPCPatrolMovement>();
 

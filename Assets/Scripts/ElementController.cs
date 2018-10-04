@@ -139,9 +139,9 @@ public class ElementController : MonoBehaviour {
 
             foreach (Transform npc in emc.npcHolder.transform)
             {
-                bool wantedMessage = npc.gameObject.GetComponent<NPCData>().ReceiveMessage(new Message(eventId, messageTime, description, tagString));
-                if (this.name.Contains("Golden") && wantedMessage && npc.gameObject.GetComponent<NPCData>().NPCType == 1)
+                if (this.name.Contains("Golden") && npc.gameObject.GetComponent<NPCData>().NPCType == 1)
                 {
+                    npc.gameObject.GetComponent<NPCData>().ReceiveMessage(new Message(eventId, messageTime, description, tagString));
                     switch (tags[0].name)
                     {
                         case "Wood":

@@ -33,7 +33,7 @@ public class WizardController : MonoBehaviour {
 
     public void UpdateDifficulty()
     {
-        minimumFollowDistance = 3.0f + ((gm.GetComponent<QuestsController>().totalGoldenObjectsGathered + gm.GetComponent<QuestsController>().playerStash) / 12.0f) * 2.0f;
+        minimumFollowDistance = 2.5f + ((gm.GetComponent<QuestsController>().totalGoldenObjectsGathered + gm.GetComponent<QuestsController>().playerStash) / 12.0f) * 2.0f;
         this.GetComponent<NPCPatrolMovement>().velocity = 1.3f + ((gm.GetComponent<QuestsController>().totalGoldenObjectsGathered + gm.GetComponent<QuestsController>().playerStash) / 12.0f) * 1.3f;
     }
 
