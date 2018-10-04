@@ -84,6 +84,7 @@ public class TutorialController : MonoBehaviour {
             DisableTutorialColliders();
 
             StartCoroutine(this.GetComponent<MySQLManager>().LogEventAtTime("Finished Tutorial"));
+            StartCoroutine(this.GetComponent<MySQLManager>().LogEventAtTime("Not Using Model"));
         }
     }
 
